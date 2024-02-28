@@ -30,14 +30,12 @@ const Button = styled.button`
 
 const Widget = styled.div`
   position: absolute;
-  top: 0;
-  left: 50%;
-  width: 50%;
-  transform: translate(-50%, 0);
+  bottom: 20px;
+  right: 20px;
   padding: 1em;
-  background-color: #fefefe;
+  background-color: chocolate;
   color: #61dafb;
-  height: 90vh;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
