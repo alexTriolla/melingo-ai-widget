@@ -9,7 +9,6 @@ function App() {
   };
 
   return (
-    <div className="App">
       <div className="app-container">
         {isOpen ? (
           <div className="widget">
@@ -35,7 +34,6 @@ function App() {
           </button>
         )}
       </div>
-    </div>
   );
 }
 

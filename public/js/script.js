@@ -8,7 +8,7 @@
     newScript.async = false;
     newScript.src = 'https://ai-chat.triolla.io/' + fileName;
     // This ensures the script is added before the first existing script tag,
-    // but after the 'root' div has been defined.
+    // but after the 'melingo-ai-agent' div has been defined.
     firstScript.parentNode.insertBefore(newScript, firstScript);
   }
 
