@@ -23,7 +23,7 @@
 /* Widget styles */
 .widget {
   position: absolute;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   padding: 1em;
   background-color: chocolate;
@@ -33,6 +33,16 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  transition: all 0.2s ease-out;
+  transform: translateX(10%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.widget-show {
+  transform: translateY(0%);
+  opacity: 1;
+  visibility: visible;
 }
 
 .widget-header {

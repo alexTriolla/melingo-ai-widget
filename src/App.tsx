@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
+import AvatarIcon from './assets/svg/Avatar.svg';
+import ChatIcon from './assets/svg/chat.svg';
+import ArrowIcon from './assets/svg/Chevron.svg';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,43 +11,30 @@ function App() {
     setIsOpen(!isOpen);
   };
 
-  return isOpen ? (
-    <div className="widget">
-      <div className="widget-header">
-        <div className="logo-container">
-          <img src="https://via.placeholder.com/50" alt="logo" />
+  return (
+    <>
+      <div className={`widget ${isOpen ? 'widget-show' : ''}`}>
+        <div className="widget-header">
+          <div className="logo-container">
+            <img src={AvatarIcon} alt="logo" />
+          </div>
+          <div className="title-container">
+            <p>Chatbot Name</p>
+            <span>Our bot will reply instantly</span>
+          </div>
+          <button className="close-button" onClick={handleOpen}>
+            X
+          </button>
         </div>
-        <div className="title-container">
-          <p>Chatbot Name</p>
-          <span>Our bot will reply instantly</span>
+        <div className="widget-content">
+          <p>Content</p>
         </div>
-        <button className="close-button" onClick={handleOpen}>
-          X
-        </button>
       </div>
-      <div className="widget-content">
-        <p>Content</p>
-      </div>
-    </div>
-  ) : (
-    <button className="app-button" onClick={handleOpen}>
-      <svg
-        width="32"
-        height="32"
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M25.5261 13.1163C25.5075 13.3761 25.4799 13.6437 25.4393 13.9271C24.7644 18.6058 21.0553 22.0015 16.621 22.0015H15.1769L14.9121 22.277C15.9083 24.1251 17.7597 25.3319 19.8405 25.3319H21.2761L24.117 28.2972C24.3006 28.4893 24.5497 28.5908 24.8038 28.5908C24.9227 28.5908 25.0427 28.5688 25.1582 28.522C25.5182 28.3784 25.7537 28.0285 25.7537 27.6414V25.217C28.398 24.6682 30.3559 22.1841 30.3559 19.1838C30.3548 16.1149 28.2565 13.5721 25.5261 13.1163Z"
-          fill="white"
-        />
-        <path
-          d="M24.0856 13.7321C24.1515 13.2724 24.1836 12.8594 24.1836 12.4673C24.1836 7.9655 20.7912 4.30212 16.6206 4.30212H10.087C5.91645 4.30212 2.52344 7.9655 2.52344 12.4673C2.52344 16.5087 5.19412 19.8436 8.7742 20.5101V23.9521C8.7742 24.4045 9.04915 24.8102 9.46835 24.9786C9.60245 25.0327 9.74162 25.0592 9.87966 25.0592C10.1766 25.0592 10.4668 24.9392 10.6797 24.7178L14.5917 20.6324H16.6206C20.3691 20.6324 23.5081 17.7308 24.0856 13.7321ZM7.98426 9.94368H18.614C18.911 9.94368 19.1533 10.1995 19.1533 10.5139C19.1533 10.8283 18.911 11.0835 18.614 11.0835H7.98426C7.68677 11.0835 7.44449 10.8283 7.44449 10.5139C7.44449 10.1995 7.68677 9.94368 7.98426 9.94368ZM14.3663 15.2325H7.98426C7.68677 15.2325 7.44449 14.9773 7.44449 14.6635C7.44449 14.3485 7.68677 14.0927 7.98426 14.0927H14.3663C14.6632 14.0927 14.9061 14.3485 14.9061 14.6635C14.9061 14.9773 14.6638 15.2325 14.3663 15.2325Z"
-          fill="white"
-        />
-      </svg>
-    </button>
+
+      <button className="app-button" onClick={handleOpen}>
+        <img src={isOpen ? ArrowIcon : ChatIcon} alt="button icon" />
+      </button>
+    </>
   );
 }
 
