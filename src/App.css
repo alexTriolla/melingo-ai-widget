@@ -34,7 +34,7 @@
   justify-content: flex-start;
   align-items: center;
   transition: all 0.2s ease-out;
-  transform: translateX(10%);
+  transform: translateY(2%);
   opacity: 0;
   visibility: hidden;
 }
