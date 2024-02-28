@@ -12,7 +12,7 @@
     firstScript.parentNode.insertBefore(newScript, firstScript);
   }
   // Make sure these filenames match your actual build output filenames.
-  loadScript('static/js/vendor.js');
+  loadScript('static/js/vendors.js');
   loadScript('static/js/main.js');
 })(document);
 /* eslint-enable no-unused-expressions */
