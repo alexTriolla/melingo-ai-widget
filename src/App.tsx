@@ -1,89 +1,5 @@
-import { useState } from 'react';
-import styled from 'styled-components';
-
-const AppContainer = styled.div`
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  position: relative;
-`;
-
-const Button = styled.button`
-  background-color: #61dafb;
-  color: #282c34;
-  font-size: 1em;
-  margin: 1em;
-  padding: 0.25em 1em;
-  border: 2px solid #282c34;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  &:hover {
-    background-color: #282c34;
-    color: #61dafb;
-  }
-`;
-
-const Widget = styled.div`
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  padding: 1em;
-  background-color: chocolate;
-  color: #61dafb;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const WidgetHeader = styled.div`
-  font-size: 1.5em;
-  display: flex;
-  width: 100%;
-  background-color: #0a0d36;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.5rem;
-`;
-
-const TitleContainer = styled.div`
-  flex: 1;
-  text-align: left;
-
-  p {
-    font-size: 22px;
-    font-weight: 700;
-  }
-
-  span {
-    font-size: 14px;
-    font-weight: 400;
-  }
-`;
-
-const CloseButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0.5rem;
-  cursor: pointer;
-`;
-
-const WidgetContent = styled.div`
-  p {
-    // Styles for your content
-  }
-`;
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,26 +9,32 @@ function App() {
   };
 
   return (
-    <div>
-      {isOpen ? (
-        <Widget>
-          <WidgetHeader>
-            <LogoContainer>
-              <img src="https://via.placeholder.com/50" alt="logo" />
-            </LogoContainer>
-            <TitleContainer>
-              <p>Chatbot Name</p>
-              <span>Our bot will replay instantly</span>
-            </TitleContainer>
-            <CloseButton onClick={handleOpen}>X</CloseButton>
-          </WidgetHeader>
-          <WidgetContent>
-            <p>Content</p>
-          </WidgetContent>
-        </Widget>
-      ) : (
-        <Button onClick={handleOpen}>OPEN</Button>
-      )}
+    <div className="App">
+      <div className="app-container">
+        {isOpen ? (
+          <div className="widget">
+            <div className="widget-header">
+              <div className="logo-container">
+                <img src="https://via.placeholder.com/50" alt="logo" />
+              </div>
+              <div className="title-container">
+                <p>Chatbot Name</p>
+                <span>Our bot will reply instantly</span>
+              </div>
+              <button className="close-button" onClick={handleOpen}>
+                X
+              </button>
+            </div>
+            <div className="widget-content">
+              <p>Content</p>
+            </div>
+          </div>
+        ) : (
+          <button className="app-button" onClick={handleOpen}>
+            OPEN
+          </button>
+        )}
+      </div>
     </div>
   );
 }
