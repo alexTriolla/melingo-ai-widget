@@ -11,8 +11,13 @@
     // but after the 'root' div has been defined.
     firstScript.parentNode.insertBefore(newScript, firstScript);
   }
+
+  var element = document.createElement('div');
+  element.id = 'melingo-ai-agent';
+  document.body.appendChild(element);
+
   // Make sure these filenames match your actual build output filenames.
-  loadScript('static/js/vendors.js');
-  loadScript('static/js/main.js');
+  loadScript('build/static/js/vendors.js');
+  loadScript('build/static/js/main.js');
 })(document);
 /* eslint-enable no-unused-expressions */
