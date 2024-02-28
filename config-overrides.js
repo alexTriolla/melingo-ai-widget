@@ -10,5 +10,15 @@ module.exports = function override(config, env) {
       plugin.options.chunkFilename = 'static/css/[name].chunk.css';
     }
   });
+  config.optimization.splitChunks = {
+    cacheGroups: {
+      vendor: {
+        test: /[\\/]node_modules[\\/]/,
+        name: 'vendors',
+        chunks: 'all',
+      },
+    },
+  };
+
   return config;
 };
