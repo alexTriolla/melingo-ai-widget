@@ -6,12 +6,12 @@ export type ViewType = {
   order: number;
 };
 
-export type SenderType = "melingo" | "user";
+export type SenderType = 'melingo' | 'user';
 
 export type MessageType = {
-  id: string; 
+  id: string;
   sender: SenderType;
-  loading: boolean
+  loading: boolean;
   error: boolean;
   text?: string | null;
   url?: string | null;
@@ -31,8 +31,7 @@ export type ResponseType = {
 
 export type MessageComponentProps = {
   message: MessageType;
-  isRtl:boolean;
-  userName:string;
+  isRtl: boolean;
 };
 
 export type ButtonProps = {
@@ -51,9 +50,8 @@ export type ChatInputProps = {
 };
 
 export type MessageListProps = {
-  startupMessage: string;
   messages: MessageType[];
-  isRtl:boolean;
+  isRtl: boolean;
 };
 
 export type WelcomeProps = {

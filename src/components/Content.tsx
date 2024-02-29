@@ -14,6 +14,7 @@ import {
   linkify,
 } from '../services/helper';
 import { resetChat, sendMessage } from '../api/data';
+import MessageList from './chatSection/MessageList';
 // import MessageList from './chatSection/MessageList';
 
 const Content = () => {
@@ -41,7 +42,9 @@ const Content = () => {
 
     // Add user's message to chat
     addMessageToChat(createInitialUserMessage(userQuery));
+
     setIsLoading(true);
+
     setUserMessageSent(true); // Set flag to true
   };
 
@@ -60,64 +63,62 @@ const Content = () => {
   };
 
   // Handle Melingo's response asynchronously
-  const handleMelingoResponse = async () => {
-    // Add Melingo's loading message to chat
-    const sentReset = localStorage.getItem('sent_reset');
-    const melingoMessage = createInitialMelingoMessage();
-    addMessageToChat({ ...melingoMessage, loading: true });
-    if (sentReset === null) {
-      resetChat({
-        // company,
-        // dataset_name,
-        // email,
-        // name,
-      });
-      localStorage.setItem('sent_reset', 'true');
-    }
-    try {
-      setUserQuery('');
-      const response = await sendMessage<ResponseType>(userQuery, {
-        // company,
-        // dataset_name,
-        // email,
-        // name,
-        // sub,
-      });
-
-      updateMelingoMessage(linkify(response.reply));
-    } catch (error) {
-      updateMelingoMessage({
-        textWithoutUrl: 'We are currently unable to process your request.',
-        previewUrl: null,
-      });
-      console.error('Error fetching response:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const handleMelingoResponse = async () => {
+      // Add Melingo's loading message to chat
+      const sentReset = localStorage.getItem('sent_reset');
+      const melingoMessage = createInitialMelingoMessage();
+      addMessageToChat({ ...melingoMessage, loading: true });
+      if (sentReset === null) {
+        resetChat({
+          // company,
+          // dataset_name,
+          // email,
+          // name,
+        });
+        localStorage.setItem('sent_reset', 'true');
+      }
+      try {
+        setUserQuery('');
+        const response = await sendMessage<ResponseType>(userQuery, {
+          // company,
+          // dataset_name,
+          // email,
+          // name,
+          // sub,
+        });
+
+        updateMelingoMessage(linkify(response.reply));
+      } catch (error) {
+        updateMelingoMessage({
+          textWithoutUrl: 'We are currently unable to process your request.',
+          previewUrl: null,
+        });
+        console.error('Error fetching response:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     if (!userMessageSent || messages.length === 0) return;
     setUserMessageSent(false);
-    handleMelingoResponse();
-  }, [userMessageSent, messages]);
+    // handleMelingoResponse();
+  }, [userMessageSent, messages, userQuery]);
 
   useEffect(() => {
     return () => {
-      resetChat({
-        // company,
-        // dataset_name,
-        // email,
-        // name,
-      });
+      // resetChat({
+      //   // company,
+      //   // dataset_name,
+      //   // email,
+      //   // name,
+      // });
     };
   }, []);
 
   return (
     <div className="widget-content">
-      <p>{t('hello_world')}</p>
-
-      {/* <MessageList /> */}
+      <MessageList messages={messages} isRtl={true} />
       <ChatInput
         userQuery={userQuery}
         setUserQuery={setUserQuery}

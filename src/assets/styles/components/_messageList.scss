@@ -1,0 +1,13 @@
+// src/components/MessageList.scss
+.messages-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.loading-indicator {
+  text-align: left;
+  // Add more styles if needed
+}

@@ -13,6 +13,7 @@
     overflow: hidden; // Hides the overflow content
     line-height: 20px; // Line height for text in the textarea
     color: f.color('general-text');
+    font: 300 14px/20px 'Poppins', sans-serif;
   }
   .rtlTextArea {
     direction: rtl;
