@@ -70,23 +70,12 @@ const Content = () => {
       const melingoMessage = createInitialMelingoMessage();
       addMessageToChat({ ...melingoMessage, loading: true });
       if (sentReset === null) {
-        resetChat({
-          // company,
-          // dataset_name,
-          // email,
-          // name,
-        });
+        resetChat();
         localStorage.setItem('sent_reset', 'true');
       }
       try {
         setUserQuery('');
-        const response = await sendMessage<ResponseType>(userQuery, {
-          // company,
-          // dataset_name,
-          // email,
-          // name,
-          // sub,
-        });
+        const response = await sendMessage<ResponseType>(userQuery);
 
         updateMelingoMessage(linkify(response.reply));
       } catch (error) {
@@ -102,17 +91,12 @@ const Content = () => {
 
     if (!userMessageSent || messages.length === 0) return;
     setUserMessageSent(false);
-    // handleMelingoResponse();
+    handleMelingoResponse();
   }, [userMessageSent, messages, userQuery]);
 
   useEffect(() => {
     return () => {
-      // resetChat({
-      //   // company,
-      //   // dataset_name,
-      //   // email,
-      //   // name,
-      // });
+      resetChat();
     };
   }, []);
 

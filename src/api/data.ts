@@ -17,8 +17,12 @@ const handleRequest = async <T>(
   }
 };
 
-export const sendMessage = <T>(message: string, userInfo: any): Promise<T> =>
-  handleRequest<T>(api.post, 'get-query', { message, userInfo });
+export const sendMessage = <T>(message: string): Promise<T> =>
+  handleRequest<T>(api.post, 'get-query', {
+    query: message,
+    username: 'mel_chat_bot_app_user',
+    password: 'MelChatBotAppUser2024!',
+  });
 
 // export const resetChat = <T>(): Promise<T> =>
 //   handleRequest<T>(api.post, 'reset-chat', {
@@ -27,10 +31,8 @@ export const sendMessage = <T>(message: string, userInfo: any): Promise<T> =>
 //     reset_chat: true,
 //   });
 
-export const resetChat = <T>(userInfo: any): Promise<T> =>
+export const resetChat = <T>(): Promise<T> =>
   handleRequest<T>(api.post, 'reset-chat', {
-    message: '',
-    userInfo,
     username: 'mel_chat_bot_app_user',
     password: 'MelChatBotAppUser2024!',
     reset_chat: true,

@@ -12,8 +12,8 @@ $error-border-color: red;
   padding: 18px;
   min-width: 10rem;
   // min-height: 3rem;
-  max-width: 40rem;
-  margin-bottom: 3rem;
+  max-width: 100%;
+  // margin-bottom: 3rem;
   display: flex;
   justify-content: flex-start;
   // align-items: center;
@@ -36,7 +36,7 @@ $error-border-color: red;
   background-color: white;
   align-self: flex-start;
   margin-right: auto;
-  margin-left: 4rem;
+  margin-left: 40px;
   .melingo-loading-name {
     color: f.color('blue-dark');
     font-size: 16px;
@@ -90,7 +90,7 @@ $error-border-color: red;
   .chat-logo {
     position: absolute;
     top: 0;
-    left: -5rem;
+    left: -50px;
     width: 40px;
     height: auto;
   }
@@ -104,26 +104,49 @@ $error-border-color: red;
 
 .melingo-message-rtl {
   @extend .melingo-message;
-  margin-right: 4rem;
-  margin-left: auto;
+  // margin-right: 4rem;
+  // margin-left: auto;
+
   .message-text {
     white-space: pre-line;
     direction: rtl;
   }
+
   .chat-logo {
     right: -5rem;
   }
+
   .bubble {
     transform: scaleX(-1);
     right: -15.5px;
     z-index: -1;
   }
 }
+
 .message-loading {
   background-color: transparent;
   box-shadow: none;
   padding: 0;
 }
+
+.user-message-info {
+  align-self: flex-end;
+  color: f.color('grey-medium');
+  font-size: 12px;
+  font-weight: 400;
+  margin: 10px 55px 25px 0;
+  color: grey;
+}
+
+.melingo-message-info {
+  align-self: flex-start;
+  color: f.color('grey-medium');
+  font-size: 12px;
+  font-weight: 400;
+  margin: 10px 0 25px 55px;
+  color: grey;
+}
+
 .user-message {
   .user-message-bubble {
     right: -15.5px;
@@ -132,17 +155,11 @@ $error-border-color: red;
     transform: scaleX(-1);
   }
   @extend .message-common;
-  background-color: f.color('background-message-user');
+  background-color: white;
   align-self: flex-end;
   flex-direction: column-reverse;
-  margin-right: 5rem;
+  margin-right: 50px;
 
-  .message-info {
-    align-self: flex-start;
-    color: f.color('grey-medium');
-    font-size: 12px;
-    font-weight: 400;
-  }
   .message-text {
     white-space: pre-line;
   }
@@ -150,18 +167,17 @@ $error-border-color: red;
   .user-chat-logo {
     position: absolute;
     top: 0;
-    right: -5rem;
+    right: -50px;
     width: 40px;
     height: auto;
   }
-
 }
 .user-message-rtl {
   @extend .user-message;
   margin-left: 5rem;
   .user-chat-logo {
-    right: unset;
-    left: -5rem;
+    // right: unset;
+    // left: 90px;
   }
   .user-message-bubble-rtl {
     transform: unset;
@@ -175,8 +191,8 @@ $error-border-color: red;
     right: unset;
     // transform: scaleX(-1); //rtl
   }
-
 }
+
 .error {
   background-color: $error-background;
   border: 1px solid $error-border-color;
