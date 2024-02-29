@@ -17,7 +17,8 @@
   opacity: 0;
   visibility: hidden;
   border-radius: 30px;
-  box-shadow: 2px 4px 14.399999618530273px 0px #00000026;
+  box-shadow: 2px 4px 15px 0px #00000026;
+  z-index: 1000000000000000000000000;
 }
 
 .widget-show {

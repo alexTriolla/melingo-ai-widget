@@ -1,52 +1,8 @@
 {
     "hello_world": "hello world",
-    "pleaseEnterYourDetails": "Please enter your details",
-    "youReceivedAnInvitation": "You received an invitation to join",
-    "welcomeToCms": "Welcome to <0>{{name}}</0> CMS",
-    "cmsName": "<0>{{name}}</0> CMS",
-    "helloUser": "Hello {{name}}",
-    "happyToSeeYouAgain": "We are happy to see you again!",
-    "next": "Next",
-    "validation": {
-      "required": "This field is required",
-      "email": "This field must be a valid email"
-    },
-    "searchForUser": "Search for User",
-    "userType": "User type",
-    "signIn": "Sign In",
-    "send": "Send",
-    "forgotPassword": "Forgot Password",
-    "email": "Email",
-    "password": "Password",
-    "firstName": "First Name",
-    "lastName": "Last Name",
-    "eightDigit": "8 digits",
-    "sixDigits": "6 digits",
-    "verificationCode": "Verification Code",
-    "enterCodeHere": "Enter code here",
-    "backToLogin": "Back to login",
-    "enterVerificationCodeAndPassword": "Enter verification code and new password",
-    "enterTheEmailSignedUpWith": "Enter the email you’ve signed up with:",
-    "ifAccountIsValid": "If the email is valid, you will receive a verification code to continue the password reset process.",
-    "didntReceiveCodeSendAgain": "Didn't receive the code? Send again",
-    "verificationCodeSentTo": "A verification code has been sent to:",
-    "passwordConform": "Password must conform with policy",
-    "passwordPolicy": "Password must contain at least 8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character",
-    "confirmPassword": "Confirm Password",
-    "yourEmailHere": "Your email here",
-    "yourFirstNameHere": "Your first name here",
-    "yourLastNameHere": "Your last name here",
-    "enterPassword": "Enter your password",
-    "passwordsDontMatch": "Passwords don't match",
-    "mustBeAtLeastCharacters": "This field must be at least {{length}} characters",
-    "notFoundTitle": "404 - Page Not Found",
-    "pageNotFound": "The page you are looking for does not exist.",
-    "menuLinks": {
-      "pathControl": "Path Control",
-      "queriesControl": "Queries Control",
-      "questionsControl": "Questions Control",
-      "generalSkillsSettings": "General Skills Settings",
-      "userManagement": "User Management"
-    }
+    "PoweredBy": "Powered by",
+    "MelingoAI": "melingo AI",
+    "enterQuestion": "Enter your question here..."
+    
   }
   

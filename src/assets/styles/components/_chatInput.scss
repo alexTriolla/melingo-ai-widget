@@ -1,0 +1,62 @@
+.message-input {
+  display: flex;
+  gap: 30px; // Sets a gap between input and button
+  justify-content: center; // Centers the input and button if there is extra space
+  padding: 10px 0; // Vertical padding for the message-input area
+
+  textarea {
+    width: 100%;
+    min-height: 55px; // Initial height
+    padding: 20px 40px; // Padding inside the textarea
+    border-radius: 30px; // Rounded corners for the textarea
+    resize: none; // Prevents resizing the textarea manually
+    overflow: hidden; // Hides the overflow content
+    line-height: 20px; // Line height for text in the textarea
+    color: f.color('general-text');
+  }
+  .rtlTextArea {
+    direction: rtl;
+  }
+  button {
+    border: unset;
+    width: 55px; // Fixed width
+    height: 55px; // Fixed height
+    border-radius: 50%; // Makes the button rounded
+    background: #ffffff; // White background for the button
+    cursor: pointer; // Changes the cursor to a pointer on hover
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .message-form {
+    position: relative;
+    display: flex;
+    width: 100%;
+    gap: 30px; // Sets a gap between input and button
+    justify-content: center; // Centers the input and button if there is extra space
+    align-items: flex-end;
+    .send-message {
+      position: absolute;
+      right: 3px;
+      top: 50%;
+      transform: translateY(-50%);
+      img {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+.input-description {
+  font-size: 12px;
+  font-weight: 400;
+  color: f.color('general-text');
+  margin: auto;
+
+  a {
+    color: black;
+    font-weight: 500;
+  }
+}

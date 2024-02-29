@@ -5,7 +5,12 @@
   background-color: f.color('background-widget-content');
   border-radius: 0 0 25px 25px;
   flex-direction: column;
+  justify-content: flex-start;
   font-size: 16px;
   color: f.color('content-text');
   padding: 20px;
+
+  p:first-child {
+    flex: 1;
+  }
 }
