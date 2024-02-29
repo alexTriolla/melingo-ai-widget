@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './assets/styles/global.scss';
-import Header from './assets/components/Header';
+import Header from './components/Header';
 import classNames from 'classnames';
-import ChatButton from './assets/components/ChatButton';
-import Content from './assets/components/Content';
+import ChatButton from './components/ChatButton';
+import Content from './components/Content';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
