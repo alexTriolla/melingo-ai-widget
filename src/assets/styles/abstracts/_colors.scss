@@ -21,6 +21,9 @@ $appColors: (
       'widget-content': $color-background-widget-content,
       // Add widget content background color
     ),
+    'content': (
+      'text': $color-button-background,
+    ),
     'button': (
       // Add button colors
       'background': $color-button-background,

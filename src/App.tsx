@@ -3,6 +3,7 @@ import './assets/styles/global.scss';
 import Header from './assets/components/Header';
 import classNames from 'classnames';
 import ChatButton from './assets/components/ChatButton';
+import Content from './assets/components/Content';
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,9 +18,7 @@ function App() {
         })}
       >
         <Header onClose={handleOpen} />
-        <div className="widget-content">
-          <p>Content</p>
-        </div>
+        <Content />
       </div>
 
       <ChatButton handleOpen={handleOpen} isOpen={isOpen} />

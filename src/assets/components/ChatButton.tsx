@@ -6,7 +6,7 @@ type ChatButtonProps = {
 const ChatButton = ({ handleOpen, isOpen }: ChatButtonProps) => {
   return (
     <button className="app-button" onClick={handleOpen}>
-      {isOpen ? (
+      {!isOpen ? (
         <svg
           width="29"
           height="25"
