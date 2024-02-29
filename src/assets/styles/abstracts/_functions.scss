@@ -1,0 +1,111 @@
+@use 'sass:math';
+@use './colors';
+
+$breakpoints: (
+  '$small': 640px,
+  '$medium': 768px,
+  '$large': 1024px,
+  '$xl': 1280px,
+  '$xxl': 1536px,
+);
+
+@function breakpoint($breakpoint) {
+  @return map-get($map: $breakpoints, $key: $breakpoint);
+}
+
+@function sassColor($key) {
+  @return get(colors.$appColors, $key, '-');
+}
+
+@function color($name) {
+  @return #{unquote('var(--#{quote($name)})')};
+}
+
+@function colorRGB($var) {
+  @return var(--#{$var}-RGB);
+}
+
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+@function toRem($value) {
+  $remValue: math.div($value, 18) + rem;
+  @return $remValue;
+}
+
+@function get($map, $key, $delimiter: '.') {
+  $keys: str-explode($key, $delimiter);
+
+  @if not deep-map-check($map, $keys...) {
+    @error "Cannot deep find one of the keys '#{$keys}'!";
+  }
+
+  @return deep-map-get($map, $keys...);
+}
+
+@function str-explode($string, $delimiter: '') {
+  @if type-of($string) != 'string' {
+    @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
+  } @else if type-of($delimiter) != 'string' {
+    @error 'The argument $string: `#{$string}` is of incorrect type: `#{type-of($string)}`. Type of `String` is required!';
+  }
+  $result: ();
+  $running: true;
+  @if str-length($delimiter) == 0 {
+    @for $i from 1 through str-length($string) {
+      $result: append($result, str-slice($string, $i, $i));
+    }
+    @return $result;
+  }
+  @while $running {
+    $index: str-index($string, $delimiter);
+    @if $index != null {
+      $item: str-slice($string, 1, ($index - 1));
+      $result: append($result, $item);
+      $string: str-slice($string, ($index + str-length($delimiter)));
+    } @else {
+      $running: false;
+    }
+  }
+  @return append($result, $string);
+}
+
+@function deep-map-check($map, $keys...) {
+  @if type-of($map) != 'map' {
+    @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
+  }
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @error "map hasn't got the key '#{$key}'";
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+@function deep-map-get($map, $keys...) {
+  @if type-of($map) != 'map' {
+    @error 'The argument $map: `#{$map}` is of incorrect type: `#{type-of($map)}`. Type of `Map` is required!';
+  }
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}

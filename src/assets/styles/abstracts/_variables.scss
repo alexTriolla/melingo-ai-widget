@@ -1,0 +1,15 @@
+@use './mixins' as m;
+@use './colors' as c;
+@use './functions' as f;
+
+// [theme-mode='light'] {
+  // @include m.map-scss-vars-into-css-vars(f.sassColor('light'));
+// }
+
+:root {
+  @include m.map-scss-vars-into-css-vars(f.sassColor('light'));
+}
+
+// [theme-mode='dark'] {
+  // @include m.map-scss-vars-into-css-vars(f.sassColor('dark'));
+// }

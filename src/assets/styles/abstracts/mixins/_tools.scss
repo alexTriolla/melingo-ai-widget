@@ -1,0 +1,36 @@
+@use 'sass:meta';
+@use 'sass:string';
+@use '../functions' as f;
+
+@mixin map-scss-vars-into-css-vars(
+  $map,
+  $globalPrefix: '',
+  $chainPrefix: '',
+  $index: 0
+) {
+  @each $name, $value in $map {
+    $chainPrefixWasTruncated: false;
+
+    @if string.length($name) == 0 and $index > 0 {
+      $chainPrefix: string.slice($chainPrefix, 1, -2);
+      $chainPrefixWasTruncated: true;
+    }
+
+    $computedName: #{$chainPrefix}#{$name};
+    @if meta.type-of($value) == 'map' {
+      @include map-scss-vars-into-css-vars(
+        $value,
+        $globalPrefix,
+        #{$computedName + '-'},
+        $index + 1
+      );
+    } @else {
+      --#{$globalPrefix}#{$computedName}: #{$value};
+      --#{$globalPrefix}#{$computedName}-RGB: #{f.hexToRGB($value)};
+
+      @if $chainPrefixWasTruncated {
+        $chainPrefix: $chainPrefix + '-';
+      }
+    }
+  }
+}
