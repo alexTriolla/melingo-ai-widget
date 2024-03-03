@@ -84,16 +84,27 @@ const Message: React.FC<MessageComponentProps> = ({ message, isRtl }) => {
         )}
 
         {/* Display appropriate bubble icon based on the message sender */}
-        {/* {!message.error && !message.loading && (
-        <img
-          src={BubbleMelingoIcon}
-          alt="Bubble Icon"
-          className={classnames('bubble', {
-            'user-message-bubble': isUserMessage,
-            'user-message-bubble-rtl': isUserMessage && isRtl,
-          })}
-        />
-      )} */}
+        {!message.error && !message.loading && (
+          <div
+            className={classnames(styles['bubble'], {
+              [styles['user-message-bubble']]: isUserMessage,
+              [styles['user-message-bubble-rtl']]: isUserMessage && isRtl,
+            })}
+          >
+            <svg
+              width="18"
+              height="25"
+              viewBox="0 0 18 25"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M-5.90104e-07 12.5L18 0.808658L18 24.1913L-5.90104e-07 12.5Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        )}
 
         {/* Display the message text */}
         <div className={styles['message-text']}>

@@ -1,6 +1,20 @@
+import { resetChat } from '../api/data';
 import styles from '../assets/styles/components/header.module.scss';
+import { MessageType } from '../types/common';
 
-const Header = ({ onClose }: { onClose: () => void }) => {
+const Header = ({
+  setMessages,
+  handleOpen,
+}: {
+  setMessages: (param: MessageType[]) => void;
+  handleOpen: () => void;
+}) => {
+  const closeWidget = () => {
+    resetChat();
+    setMessages([]);
+    handleOpen();
+  };
+
   return (
     <div className={styles.widgetHeader}>
       <div className={styles.logoContainer}>
@@ -10,7 +24,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
         <p>Chatbot Name</p>
         <span>Our bot will reply instantly</span>
       </div>
-      <div className={styles.button} onClick={onClose}>
+      <div className={styles.button} onClick={handleOpen}>
         <svg
           width="18"
           height="2"
@@ -24,7 +38,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
           />
         </svg>
       </div>
-      <div className={styles.button} onClick={onClose}>
+      <div className={styles.button} onClick={closeWidget}>
         <svg
           width="24"
           height="24"

@@ -98,9 +98,13 @@ $error-border-color: red;
   }
 
   .bubble {
-    left: -15.6px;
-    top: 0;
+    left: -29px;
     z-index: -1;
+    top: 10px;
+
+    svg {
+      transform: scaleX(-1) !important;
+    }
   }
 }
 
@@ -151,10 +155,10 @@ $error-border-color: red;
 
 .user-message {
   .user-message-bubble {
-    right: -15.5px;
-    top: 0;
+    left: 136px !important;
+    top: 10px;
     z-index: -1;
-    transform: scaleX(-1);
+    transform: scaleX(-1) !important;
   }
   @extend .message-common;
   background-color: white;
@@ -169,7 +173,7 @@ $error-border-color: red;
   .user-chat-logo {
     position: absolute;
     top: 0;
-    right: -50px;
+    right: -60px;
     width: 40px;
     height: auto;
   }

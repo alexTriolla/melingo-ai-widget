@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+
 import ChatInput from './chatSection/ChatInput';
 import {
   MessageType,
@@ -17,10 +17,14 @@ import { resetChat, sendMessage } from '../api/data';
 import MessageList from './chatSection/MessageList';
 import styles from '../assets/styles/components/content.module.scss';
 
-const Content = () => {
-  const { t } = useTranslation();
+const Content = ({
+  messages,
+  setMessages,
+}: {
+  messages: MessageType[];
+  setMessages: (param: any) => void;
+}) => {
   const [userQuery, setUserQuery] = useState<string>('');
-  const [messages, setMessages] = useState<MessageType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [userMessageSent, setUserMessageSent] = useState(false);
 
@@ -32,7 +36,10 @@ const Content = () => {
     text?: string;
     url?: string | null;
   }) =>
-    setMessages((prevMessages) => [...prevMessages, createNewMessage(params)]);
+    setMessages((prevMessages: any) => [
+      ...prevMessages,
+      createNewMessage(params),
+    ]);
 
   // Handle form submission, responding to user input
   const handleSubmit = async (
@@ -53,8 +60,8 @@ const Content = () => {
     textWithoutUrl,
     previewUrl,
   }: PreviewData) => {
-    setMessages((prevMessages) => {
-      return prevMessages.map((msg, idx) =>
+    setMessages((prevMessages: MessageType[]) => {
+      return prevMessages.map((msg: MessageType, idx: number) =>
         idx === prevMessages.length - 1
           ? { ...msg, text: textWithoutUrl, url: previewUrl, loading: false }
           : msg
@@ -92,7 +99,13 @@ const Content = () => {
     if (!userMessageSent || messages.length === 0) return;
     setUserMessageSent(false);
     handleMelingoResponse();
-  }, [userMessageSent, messages, userQuery]);
+  }, [
+    userMessageSent,
+    messages,
+    userQuery,
+    addMessageToChat,
+    updateMelingoMessage,
+  ]);
 
   useEffect(() => {
     return () => {
