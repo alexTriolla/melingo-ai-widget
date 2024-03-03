@@ -1,4 +1,5 @@
-// src/components/MessageList.scss
+@use '../abstracts/functions' as f;
+
 .messages-list {
   flex-grow: 1;
   overflow-y: auto;

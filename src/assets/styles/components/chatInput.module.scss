@@ -1,3 +1,5 @@
+@use '../abstracts/functions' as f;
+
 .message-input {
   display: flex;
   gap: 30px; // Sets a gap between input and button

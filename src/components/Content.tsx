@@ -15,7 +15,7 @@ import {
 } from '../services/helper';
 import { resetChat, sendMessage } from '../api/data';
 import MessageList from './chatSection/MessageList';
-// import MessageList from './chatSection/MessageList';
+import styles from '../assets/styles/components/content.module.scss';
 
 const Content = () => {
   const { t } = useTranslation();
@@ -101,7 +101,7 @@ const Content = () => {
   }, []);
 
   return (
-    <div className="widget-content">
+    <div className={styles.widgetContent}>
       <MessageList messages={messages} isRtl={true} />
       <ChatInput
         userQuery={userQuery}

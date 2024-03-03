@@ -1,3 +1,5 @@
+import styles from '../assets/styles/components/button.module.scss';
+
 type ChatButtonProps = {
   handleOpen: () => void;
   isOpen: boolean;
@@ -5,7 +7,7 @@ type ChatButtonProps = {
 
 const ChatButton = ({ handleOpen, isOpen }: ChatButtonProps) => {
   return (
-    <button className="app-button" onClick={handleOpen}>
+    <button className={styles.appButton} onClick={handleOpen}>
       {!isOpen ? (
         <svg
           width="29"

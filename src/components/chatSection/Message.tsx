@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { MessageComponentProps } from '../../types/common';
 import { PulseLoader } from 'react-spinners';
+import styles from '../../assets/styles/components/message.module.scss';
 
 /**
  * Message component to display a chat message.
@@ -27,18 +28,22 @@ const Message: React.FC<MessageComponentProps> = ({ message, isRtl }) => {
   return (
     <>
       <div
-        className={classnames('message', {
-          'message-loading': message.loading,
-          'melingo-message-rtl': isMelingoMessage && isRtl,
-          'melingo-message': isMelingoMessage,
-          'user-message-rtl': isUserMessage && isRtl,
-          'user-message': isUserMessage,
+        className={classnames({
+          [styles['message-loading']]: message.loading,
+          [styles['melingo-message-rtl']]: isMelingoMessage && isRtl,
+          [styles['melingo-message']]: isMelingoMessage,
+          [styles['user-message-rtl']]: isUserMessage && isRtl,
+          [styles['user-message']]: isUserMessage,
           error: message.error, // Apply error styling if there's an error
         })}
       >
         {/* Display chat logo for Melingo's messages if there's no error */}
         {!message.error && (
-          <div className={isMelingoMessage ? 'chat-logo' : 'user-chat-logo'}>
+          <div
+            className={
+              isMelingoMessage ? styles['chat-logo'] : styles['user-chat-logo']
+            }
+          >
             <svg
               width="32"
               height="32"
@@ -91,9 +96,11 @@ const Message: React.FC<MessageComponentProps> = ({ message, isRtl }) => {
       )} */}
 
         {/* Display the message text */}
-        <div className="message-text">
+        <div className={styles['message-text']}>
           {message.loading && isMelingoMessage && (
-            <div className="melingo-loading-name">Melingo AI Agent</div>
+            <div className={styles['melingo-loading-name']}>
+              Melingo AI Agent
+            </div>
           )}
           {message.loading ? (
             <PulseLoader color="#B9B7CD" margin={4} size={8} />
@@ -106,10 +113,10 @@ const Message: React.FC<MessageComponentProps> = ({ message, isRtl }) => {
       {!message.loading && (
         <div
           className={classnames({
-            'user-message-info': isUserMessage,
-            'user-message-info-rtl': isUserMessage && isRtl,
-            'melingo-message-info': isMelingoMessage,
-            'melingo-message-info-rtl': isMelingoMessage && isRtl,
+            [styles['user-message-info']]: isUserMessage,
+            [styles['user-message-info-rtl']]: isUserMessage && isRtl,
+            [styles['melingo-message-info']]: isMelingoMessage,
+            [styles['melingo-message-info-rtl']]: isMelingoMessage && isRtl,
           })}
         >
           Melingo AI {isUserMessage ? 'User' : 'Agent'} | {hoursAndMinutes}

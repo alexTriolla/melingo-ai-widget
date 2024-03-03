@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import { ChatInputProps } from '../../types/common';
 import { useTranslation } from 'react-i18next';
+import styles from '../../assets/styles/components/chatInput.module.scss';
 
 const ChatInput: React.FC<ChatInputProps> = ({
   userQuery,
@@ -40,12 +41,12 @@ const ChatInput: React.FC<ChatInputProps> = ({
   return (
     <>
       <div
-        className={classnames('message-input', {
+        className={classnames(styles['message-input'], {
           active: isInputActive,
           rtl: isRtl,
         })}
       >
-        <form className="message-form" onSubmit={handleSubmit}>
+        <form className={styles['message-form']} onSubmit={handleSubmit}>
           <textarea
             ref={textareaRef}
             value={userQuery}
@@ -59,7 +60,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
           />
           <button
             type="submit"
-            className={classnames('send-message', { rtlButton: isRtl })}
+            className={classnames(styles['send-message'], { rtlButton: isRtl })}
           >
             <svg
               width="48"
@@ -78,7 +79,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
         </form>
       </div>
 
-      <p className={classnames('input-description', { rtl: isRtl })}>
+      <p className={classnames(styles['input-description'], { rtl: isRtl })}>
         {t('PoweredBy')}{' '}
         <a href="https://insightsui.morfix.com/tou-morfix-insights">
           {t('MelingoAI')}

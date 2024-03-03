@@ -1,4 +1,6 @@
-.widget-header {
+@use '../abstracts/functions' as f;
+
+.widgetHeader {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,7 +13,7 @@
   height: 100px;
   font-size: 1.5em;
 
-  .logo-container {
+  .logoContainer {
     width: 80px;
     height: 100%;
     margin-right: 10px;
@@ -25,7 +27,7 @@
     align-items: center;
   }
 
-  .title-container {
+  .titleContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;

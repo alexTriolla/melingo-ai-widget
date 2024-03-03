@@ -1,3 +1,5 @@
+@use '../abstracts/functions' as f;
+
 // Define common values as variables
 $shadow-color: rgba(0, 0, 0, 0.1);
 $border-radius: 18px;

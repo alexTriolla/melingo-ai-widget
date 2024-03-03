@@ -1,14 +1,16 @@
+import styles from '../assets/styles/components/header.module.scss';
+
 const Header = ({ onClose }: { onClose: () => void }) => {
   return (
-    <div className="widget-header">
-      <div className="logo-container">
+    <div className={styles.widgetHeader}>
+      <div className={styles.logoContainer}>
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
-      <div className="title-container">
+      <div className={styles.titleContainer}>
         <p>Chatbot Name</p>
         <span>Our bot will reply instantly</span>
       </div>
-      <div className="button" onClick={onClose}>
+      <div className={styles.button} onClick={onClose}>
         <svg
           width="18"
           height="2"
@@ -22,7 +24,7 @@ const Header = ({ onClose }: { onClose: () => void }) => {
           />
         </svg>
       </div>
-      <div className="button" onClick={onClose}>
+      <div className={styles.button} onClick={onClose}>
         <svg
           width="24"
           height="24"

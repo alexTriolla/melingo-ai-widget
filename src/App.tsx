@@ -3,6 +3,7 @@ import './assets/styles/global.scss';
 import Header from './components/Header';
 import classNames from 'classnames';
 import ChatButton from './components/ChatButton';
+import styles from './assets/styles/components/widget.module.scss';
 import Content from './components/Content';
 
 function App() {
@@ -13,8 +14,8 @@ function App() {
   return (
     <>
       <div
-        className={classNames('widget', {
-          'widget-show': isOpen,
+        className={classNames(styles.widget, {
+          [styles['widget-show']]: isOpen,
         })}
       >
         <Header onClose={handleOpen} />
