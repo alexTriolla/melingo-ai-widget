@@ -37,6 +37,9 @@ class IframeApp {
     container.style.width = '700px';
     container.style.height = '800px';
     container.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
+    container.style.position = 'absolute'; // Set the position to absolute
+    container.style.bottom = '0'; // Position at the bottom
+    container.style.right = '0'; // Position at the right
 
     // Append the iframe to the container
     container.appendChild(iframe);
