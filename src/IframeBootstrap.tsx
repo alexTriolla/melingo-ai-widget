@@ -26,29 +26,38 @@ class IframeApp {
   initIframe() {
     const iframe = document.createElement('iframe');
 
-    if (!iframe) return null;
+    // Setting iframe attributes as before
     Object.keys(this.iframeAttributes || {}).forEach((key) => {
       const value = this.iframeAttributes ? this.iframeAttributes[key] : '';
       iframe.setAttribute(key, value);
     });
 
-    document.body.appendChild(iframe);
+    // Create a container div for the iframe
+    const container = document.createElement('div');
+    container.style.width = '700px';
+    container.style.height = '800px';
+    container.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
+
+    // Append the iframe to the container
+    container.appendChild(iframe);
+
+    // Append the container to the document body
+    document.body.appendChild(container);
+
     if (!iframe.contentWindow) return;
     const doc = iframe.contentWindow.document;
     doc.open();
     doc.close();
 
-    // Load external CSS files into the iframe
+    // Loading external CSS files into the iframe as before
     this.cssFiles.forEach((file: any) => {
       const link = doc.createElement('link');
       link.rel = 'stylesheet';
-      link.href = file; // Adjust this path as needed
+      link.href = file;
       doc.head.appendChild(link);
     });
 
-    // Similar null checks before using `iframe.contentWindow.document` elsewhere
-
-    // Ensure the iframe has a body before attempting to attach the React app.
+    // Creating and appending the reactRoot as before
     const reactRoot = iframe.contentWindow.document.createElement('div');
     reactRoot.id = this.rootId;
     iframe.contentWindow.document.body.appendChild(reactRoot);
