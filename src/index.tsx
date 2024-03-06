@@ -1,17 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import { Provider } from 'react-redux';
-import { store } from './store';
-import './i18n';
+import './i18n'; // Assuming this is some setup file for internationalization.
+import IframeApp from './IframeBootstrap';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('melingo-ai-agent') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
-);
+// Define your iframe attributes as needed, e.g., styles, sandbox options, etc.
+const iframeAttributes = {
+  style: 'width: 100%; height: 100%; border: none;',
+  // Other attributes like 'sandbox' can be added here.
+};
+
+// The ID for the root element inside the iframe where your React app will mount.
+const rootId = 'melingo-ai-agent';
+
+new IframeApp(rootId, iframeAttributes as any, [
+  'https://ai-chat.triolla.io/build/static/css/main.css',
+]);
