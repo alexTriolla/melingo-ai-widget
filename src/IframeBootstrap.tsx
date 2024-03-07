@@ -38,6 +38,7 @@ class IframeApp {
 
     // Create a container div for the iframe
     this.container = document.createElement('div'); // Assign to instance property
+    this.container.id = 'melingo-ai-agent-container';
     this.container.style.width = '80px';
     this.container.style.height = '80px';
     this.container.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
