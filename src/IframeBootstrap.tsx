@@ -47,7 +47,7 @@ class IframeApp {
     this.chatContainer.style.height = '700px'; // Adjust for the chat app
     this.chatContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
-    this.chatContainer.style.bottom = '95px'; // Position at the bottom
+    this.chatContainer.style.bottom = '60px'; // Position at the bottom
     this.chatContainer.style.right = '30px'; // Position at the right
     this.chatContainer.style.display = 'flex'; // Use flexbox layout
     this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
