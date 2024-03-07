@@ -44,7 +44,7 @@ class IframeApp {
     // Create the chat iframe and its container, similar to initIframe() but with chat-specific settings
     this.chatContainer = document.createElement('div');
     this.chatContainer.style.width = '525px'; // Adjust for the chat app
-    this.chatContainer.style.height = '800px'; // Adjust for the chat app
+    this.chatContainer.style.height = '700px'; // Adjust for the chat app
     this.chatContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
     this.chatContainer.style.bottom = '30px'; // Position at the bottom
@@ -52,6 +52,7 @@ class IframeApp {
     this.chatContainer.style.display = 'flex'; // Use flexbox layout
     this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
     this.chatContainer.style.justifyContent = 'center'; // Horizontally center the child content
+    this.chatContainer.id = 'chat-container';
 
     this.chatIframe = document.createElement('iframe');
 
@@ -74,12 +75,17 @@ class IframeApp {
     doc.close();
 
     // Loading external CSS files into the iframe as before
-    this.cssFiles.forEach((file: any) => {
-      const link = doc.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = file;
-      doc.head.appendChild(link);
-    });
+    // this.cssFiles.forEach((file: any) => {
+    //   const link = doc.createElement('link');
+    //   link.rel = 'stylesheet';
+    //   link.href = file;
+    //   doc.head.appendChild(link);
+    // });
+
+    const link = doc.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/global.css';
+    doc.head.appendChild(link);
 
     // Use requestIdleCallback to defer execution until after the iframe has loaded
     requestIdleCallback(() => {
@@ -98,12 +104,12 @@ class IframeApp {
   initButtonIframe(eventBus: any) {
     // Create the button iframe and its container
     this.buttonContainer = document.createElement('div');
-    this.buttonContainer.style.width = '100px'; // Adjust for the button app
-    this.buttonContainer.style.height = '100px'; // Adjust for the button app
+    this.buttonContainer.style.width = '70px'; // Adjust for the button app
+    this.buttonContainer.style.height = '70px'; // Adjust for the button app
     this.buttonContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.buttonContainer.style.position = 'absolute'; // Set the position to absolute
-    this.buttonContainer.style.bottom = '0'; // Position at the bottom
-    this.buttonContainer.style.right = '0'; // Position at the right
+    this.buttonContainer.style.bottom = '10px'; // Position at the bottom
+    this.buttonContainer.style.right = '10px'; // Position at the right
 
     this.buttonIframe = document.createElement('iframe');
 
@@ -126,12 +132,6 @@ class IframeApp {
     doc.close();
 
     // Loading external CSS files into the iframe as before
-    this.cssFiles.forEach((file: any) => {
-      const link = doc.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = file;
-      doc.head.appendChild(link);
-    });
 
     // Use requestIdleCallback to defer execution until after the iframe has loaded
     requestIdleCallback(() => {
