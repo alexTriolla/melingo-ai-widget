@@ -1,7 +1,7 @@
 import './assets/styles/global.scss';
 import Header from './components/Header';
 import classNames from 'classnames';
-// import styles from './assets/styles/components/widget.module.scss';
+import styles from './assets/styles/components/widget.module.scss';
 import Content from './components/Content';
 import { useEffect, useState } from 'react';
 import { MessageType } from './types/common';
@@ -31,8 +31,8 @@ export default function ChatComponent({ myEventBus }: { myEventBus: any }) {
 
   return (
     <div
-      className={classNames('widget', {
-        widgetShow: isOpen,
+      className={classNames(styles.widget, {
+        [styles.widgetShow]: isOpen,
       })}
     >
       <Header {...{ setMessages, handleOpen }} />

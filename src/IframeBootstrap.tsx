@@ -40,7 +40,7 @@ class IframeApp {
     }
   }
 
-  async initChatIframe(eventBus: any) {
+  initChatIframe(eventBus: any) {
     // Create the chat iframe and its container, similar to initIframe() but with chat-specific settings
     this.chatContainer = document.createElement('div');
     this.chatContainer.style.width = '525px'; // Adjust for the chat app
@@ -75,19 +75,12 @@ class IframeApp {
     doc.close();
 
     // Loading external CSS files into the iframe as before
-    // this.cssFiles.forEach((file: any) => {
-    //   const link = doc.createElement('link');
-    //   link.rel = 'stylesheet';
-    //   link.href = file;
-    //   doc.head.appendChild(link);
-    // });
-
-    const styles = await fetch('/global.css');
-    const stylesBody = await styles.text();
-
-    const link = doc.createElement('style');
-    link.innerHTML = stylesBody;
-    doc.head.appendChild(link);
+    this.cssFiles.forEach((file: any) => {
+      const link = doc.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = file;
+      doc.head.appendChild(link);
+    });
 
     // Use requestIdleCallback to defer execution until after the iframe has loaded
     requestIdleCallback(() => {
@@ -134,6 +127,12 @@ class IframeApp {
     doc.close();
 
     // Loading external CSS files into the iframe as before
+    this.cssFiles.forEach((file: any) => {
+      const link = doc.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = file;
+      doc.head.appendChild(link);
+    });
 
     // Use requestIdleCallback to defer execution until after the iframe has loaded
     requestIdleCallback(() => {
