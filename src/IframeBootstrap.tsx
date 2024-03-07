@@ -89,7 +89,7 @@ class IframeApp {
     // Add a script to handle button click and resize
     const script = document.createElement('script');
     script.textContent = `
-      document.getElementById('melingo-AI-button').addEventListener('click', function() {
+      window.document.getElementById('melingo-AI-button').addEventListener('click', function() {
         parent.postMessage({ action: 'resize', width: '700px', height: '800px' }, '*');
       });
     `;
