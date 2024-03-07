@@ -50,18 +50,3 @@
   //   });
 })(window, document, window.MelingoAI || function () {}); // Self-invoking function
 
-// Listen for message events from iframes
-window.addEventListener('message', function (event) {
-  // Ensure the message is from a trusted origin
-  if (event.origin !== 'http://example.com') return; // Adjust the origin check to match your requirements
-
-  // Handle the resize message
-  if (event.data.action === 'resize') {
-    // Dynamically resize the iframe container
-    // You might need a way to reference the specific IframeApp instance or container to resize
-    // This could involve storing iframe instances in a globally accessible way or using IDs
-    console.log('Resizing iframe to:', event.data.width, event.data.height);
-    // Actual resizing logic goes here
-  }
-});
-/* eslint-enable no-unused-expressions */
