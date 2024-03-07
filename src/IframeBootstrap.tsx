@@ -71,8 +71,8 @@ class IframeApp {
 
     if (!this.chatIframe.contentWindow) return;
     const doc = this.chatIframe.contentWindow.document;
-    doc.open();
-    doc.close();
+    // doc.open();
+    // doc.close();
 
     // Loading external CSS files into the iframe as before
     this.cssFiles.forEach((file: any) => {
@@ -123,8 +123,8 @@ class IframeApp {
 
     if (!this.buttonIframe.contentWindow) return;
     const doc = this.buttonIframe.contentWindow.document;
-    doc.open();
-    doc.close();
+    // doc.open();
+    // doc.close();
 
     // Loading external CSS files into the iframe as before
     this.cssFiles.forEach((file: any) => {
