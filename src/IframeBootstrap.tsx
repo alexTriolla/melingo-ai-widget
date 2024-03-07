@@ -49,7 +49,7 @@ class IframeApp {
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
     this.chatContainer.style.bottom = '60px'; // Position at the bottom
     this.chatContainer.style.right = '30px'; // Position at the right
-    this.chatContainer.style.display = 'flex'; // Use flexbox layout
+    this.chatContainer.style.display = 'none'; // Use flexbox layout
     this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
     this.chatContainer.style.justifyContent = 'center'; // Horizontally center the child content
     this.chatContainer.id = 'chat-container';
@@ -71,7 +71,6 @@ class IframeApp {
 
     if (!this.chatIframe.contentWindow) return;
     const doc = this.chatIframe.contentWindow.document;
-    this.chatContainer.style.display = 'none';
     // doc.open();
     // doc.close();
 
@@ -94,7 +93,9 @@ class IframeApp {
 
         this.renderAppChat(chatRoot, eventBus);
 
-        this.chatContainer.style.display = 'flex';
+        setTimeout(() => {
+          this.chatContainer.style.display = 'flex';
+        }, 1500);
       }
     });
   }
@@ -108,7 +109,7 @@ class IframeApp {
     this.buttonContainer.style.position = 'absolute'; // Set the position to absolute
     this.buttonContainer.style.bottom = '10px'; // Position at the bottom
     this.buttonContainer.style.right = '10px'; // Position at the right
-
+    this.buttonContainer.style.display = 'none'; // Use flexbox layout
     this.buttonIframe = document.createElement('iframe');
 
     Object.keys(this.iframeAttributes || {}).forEach((key) => {
@@ -126,8 +127,6 @@ class IframeApp {
 
     if (!this.buttonIframe.contentWindow) return;
     const doc = this.buttonIframe.contentWindow.document;
-    this.buttonContainer.style.display = 'none';
-
     // doc.open();
     // doc.close();
 
@@ -150,7 +149,9 @@ class IframeApp {
 
         this.renderAppButton(buttonRoot, eventBus);
 
-        this.buttonContainer.style.display = 'flex';
+        setTimeout(() => {
+          this.buttonContainer.style.display = 'flex';
+        }, 1500);
       }
     });
   }
