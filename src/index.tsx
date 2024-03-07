@@ -3,6 +3,7 @@ import IframeApp from './IframeBootstrap';
 
 // Define your iframe attributes as needed, e.g., styles, sandbox options, etc.
 const iframeAttributes = {
+  id: 'melingo-ai-agent-iframe',
   style: 'width: 100%; height: 100%; border: none;',
   // Other attributes like 'sandbox' can be added here.
 };
