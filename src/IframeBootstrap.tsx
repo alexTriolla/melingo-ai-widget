@@ -95,7 +95,7 @@ class IframeApp {
 
         setTimeout(() => {
           this.chatContainer.style.display = 'flex';
-        }, 1500);
+        }, 500);
       }
     });
   }
@@ -151,7 +151,7 @@ class IframeApp {
 
         setTimeout(() => {
           this.buttonContainer.style.display = 'flex';
-        }, 1500);
+        }, 500);
       }
     });
   }
