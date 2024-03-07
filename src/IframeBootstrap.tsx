@@ -40,7 +40,7 @@ class IframeApp {
     }
   }
 
-  initChatIframe(eventBus: any) {
+  async initChatIframe(eventBus: any) {
     // Create the chat iframe and its container, similar to initIframe() but with chat-specific settings
     this.chatContainer = document.createElement('div');
     this.chatContainer.style.width = '525px'; // Adjust for the chat app
@@ -82,9 +82,11 @@ class IframeApp {
     //   doc.head.appendChild(link);
     // });
 
-    const link = doc.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/global.css';
+    const styles = await fetch('/global.css');
+    const stylesBody = await styles.text();
+
+    const link = doc.createElement('style');
+    link.innerHTML = stylesBody;
     doc.head.appendChild(link);
 
     // Use requestIdleCallback to defer execution until after the iframe has loaded

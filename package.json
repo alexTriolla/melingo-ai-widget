@@ -30,7 +30,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "sass": "sass --watch src/assets/styles/global.scss:public/global.css --style compressed"
+    "sass": "sass --watch src/assets/styles/global.scss:src/assets/styles/global.css --style compressed"
   },
   "eslintConfig": {
     "extends": [
