@@ -54,7 +54,7 @@ window.addEventListener('message', function (event) {
   // Ensure the message is from your iframe and has the correct structure
   if (event.data.action === 'resize') {
     // Assuming iframeAppInstance is your instance of IframeApp
-    const iframeAppInstance = document.getElementById(
+    const iframeAppInstance = window.document.getElementById(
       'melingo-ai-agent-container'
     );
     iframeAppInstance.resizeContainer(event.data.width, event.data.height);
