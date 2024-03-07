@@ -71,6 +71,7 @@ class IframeApp {
 
     if (!this.chatIframe.contentWindow) return;
     const doc = this.chatIframe.contentWindow.document;
+    this.chatContainer.style.display = 'none';
     // doc.open();
     // doc.close();
 
@@ -92,6 +93,8 @@ class IframeApp {
         this.chatIframe.contentWindow.document.body.appendChild(chatRoot);
 
         this.renderAppChat(chatRoot, eventBus);
+
+        this.chatContainer.style.display = 'flex';
       }
     });
   }
@@ -123,6 +126,8 @@ class IframeApp {
 
     if (!this.buttonIframe.contentWindow) return;
     const doc = this.buttonIframe.contentWindow.document;
+    this.buttonContainer.style.display = 'none';
+
     // doc.open();
     // doc.close();
 
@@ -144,6 +149,8 @@ class IframeApp {
         this.buttonIframe.contentWindow.document.body.appendChild(buttonRoot);
 
         this.renderAppButton(buttonRoot, eventBus);
+
+        this.buttonContainer.style.display = 'flex';
       }
     });
   }

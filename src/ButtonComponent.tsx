@@ -10,9 +10,9 @@ export default function ButtonComponent({
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  // useEffect(() => {
-  //   myEventBus.emit('open-chat', isOpen);
-  // }, [myEventBus, isOpen]);
+  useEffect(() => {
+    myEventBus.emit('open-chat', isOpen);
+  }, [myEventBus, isOpen]);
 
   return <ChatButton handleOpen={() => setIsOpen(!isOpen)} isOpen={isOpen} />;
 }
