@@ -3,18 +3,31 @@ import Header from './components/Header';
 import classNames from 'classnames';
 import styles from './assets/styles/components/widget.module.scss';
 import Content from './components/Content';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MessageType } from './types/common';
 
-export default function ChatComponent() {
-  console.log('ChatComponent rendering'); // Check if this logs in the console
-
+export default function ChatComponent({ myEventBus }: { myEventBus: any }) {
   const [messages, setMessages] = useState<MessageType[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {};
 
+  useEffect(() => {
+    // document.addEventListener('message', (event) => {
+    //   console.log(event);
+    // });
+
+    myEventBus.on('open-chat', ({ detail }: { detail: boolean }) => {
+      setIsOpen(detail);
+    });
+  }, [myEventBus]);
+
   return (
-    <div className={classNames(styles.widget)}>
+    <div
+      className={classNames(styles.widget, {
+        [styles.widgetShow]: isOpen,
+      })}
+    >
       <Header {...{ setMessages, handleOpen }} />
       <Content {...{ messages, setMessages }} />
     </div>

@@ -6,11 +6,13 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import ChatComponent from './ChatComponent';
 import ButtonComponent from './ButtonComponent';
+import { EventBus } from './eventBus';
 
 interface IframeApp {
   rootId: string;
   iframeAttributes: Record<string, string>;
   cssFiles: string[]; // Added this line to include cssFiles in the interface
+  isOpen: boolean; // Added this line to include isOpen in the interface
 }
 
 class IframeApp {
@@ -22,22 +24,34 @@ class IframeApp {
   constructor(
     public rootId: string,
     public iframeAttributes: Record<string, string> = {},
-    public cssFiles: string[] = []
+    public cssFiles: string[] = [],
+    public isOpen: boolean = false
   ) {
     // Initialize chat and button iframes
-    this.initChatIframe();
-    this.initButtonIframe();
+    const myEventBus = new EventBus<string>('ai-event-bus');
+
+    this.initChatIframe(myEventBus);
+    this.initButtonIframe(myEventBus);
   }
 
-  initChatIframe() {
+  sendMessageToIframe(iframe: HTMLIFrameElement, message: Object) {
+    if (iframe.contentWindow) {
+      iframe.contentWindow.postMessage(message, '*'); // Adjust the target origin as needed for security
+    }
+  }
+
+  initChatIframe(eventBus: any) {
     // Create the chat iframe and its container, similar to initIframe() but with chat-specific settings
     this.chatContainer = document.createElement('div');
-    this.chatContainer.style.width = '700px'; // Adjust for the chat app
+    this.chatContainer.style.width = '525px'; // Adjust for the chat app
     this.chatContainer.style.height = '800px'; // Adjust for the chat app
     this.chatContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
-    this.chatContainer.style.bottom = '0'; // Position at the bottom
+    this.chatContainer.style.bottom = '30px'; // Position at the bottom
     this.chatContainer.style.right = '0'; // Position at the right
+    this.chatContainer.style.display = 'flex'; // Use flexbox layout
+    this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
+    this.chatContainer.style.justifyContent = 'center'; // Horizontally center the child content
 
     this.chatIframe = document.createElement('iframe');
 
@@ -70,29 +84,18 @@ class IframeApp {
     // Use requestIdleCallback to defer execution until after the iframe has loaded
     requestIdleCallback(() => {
       if (this.chatIframe.contentWindow) {
-        // Load the chat app into the chat iframe
+        // Load the button app into the button iframe
         const chatRoot =
           this.chatIframe.contentWindow.document.createElement('div');
         chatRoot.id = `${this.rootId}-chat`;
         this.chatIframe.contentWindow.document.body.appendChild(chatRoot);
 
-        this.renderAppChat(chatRoot);
-      }
-    });
-
-    this.chatIframe.addEventListener('load', () => {
-      if (this.chatIframe.contentWindow) {
-        const chatRoot =
-          this.chatIframe.contentWindow.document.createElement('div');
-        chatRoot.id = `${this.rootId}-chat`;
-        this.chatIframe.contentWindow.document.body.appendChild(chatRoot);
-
-        this.renderAppChat(chatRoot);
+        this.renderAppChat(chatRoot, eventBus);
       }
     });
   }
 
-  initButtonIframe() {
+  initButtonIframe(eventBus: any) {
     // Create the button iframe and its container
     this.buttonContainer = document.createElement('div');
     this.buttonContainer.style.width = '100px'; // Adjust for the button app
@@ -139,108 +142,48 @@ class IframeApp {
         buttonRoot.id = `${this.rootId}-button`;
         this.buttonIframe.contentWindow.document.body.appendChild(buttonRoot);
 
-        this.renderAppButton(buttonRoot);
+        this.renderAppButton(buttonRoot, eventBus);
       }
     });
   }
 
-  // initIframe() {
-  //   const iframe = document.createElement('iframe');
-
-  //   // Setting iframe attributes as before
-  //   Object.keys(this.iframeAttributes || {}).forEach((key) => {
-  //     const value = this.iframeAttributes ? this.iframeAttributes[key] : '';
-  //     iframe.setAttribute(key, value);
-  //   });
-
-  //   // Create a container div for the iframe
-  //   const container = document.createElement('div');
-  //   container.style.width = '100px';
-  //   container.style.height = '100px';
-  //   container.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
-  //   container.style.position = 'absolute'; // Set the position to absolute
-  //   container.style.bottom = '0'; // Position at the bottom
-  //   container.style.right = '0'; // Position at the right
-
-  //   // Append the iframe to the container
-  //   container.appendChild(iframe);
-
-  //   // Append the container to the document body
-  //   document.body.appendChild(container);
-
-  //   if (!iframe.contentWindow) return;
-  //   const doc = iframe.contentWindow.document;
-  //   // doc.open();
-  //   // doc.close();
-
-  //   // Loading external CSS files into the iframe as before
-  //   this.cssFiles.forEach((file: any) => {
-  //     const link = doc.createElement('link');
-  //     link.rel = 'stylesheet';
-  //     link.href = file;
-  //     doc.head.appendChild(link);
-  //   });
-
-  //   // Creating and appending the reactRoot as before
-  //   const reactRoot = iframe.contentWindow.document.createElement('div');
-  //   reactRoot.id = this.rootId;
-  //   iframe.contentWindow.document.body.appendChild(reactRoot);
-
-  //   let isOpen = false; // Set the initial state of the button
-  //   const handleOpen = () => {
-  //     // Handle the open event as before
-  //     console.log('Open event handled');
-  //     isOpen = !isOpen;
-  //   };
-
-  //   console.log('isOpen', isOpen);
-
-  //   this.renderAppButton(reactRoot, handleOpen, isOpen);
-
-  //   if (isOpen) {
-  //     this.renderAppChat(reactRoot, handleOpen, isOpen);
-  //   }
-  // }
-
-  renderAppButton(container: Element) {
+  renderAppButton(container: Element, eventBus: any) {
     const root = ReactDOM.createRoot(container);
     root.render(
       <React.StrictMode>
         <Provider store={store}>
-          <ButtonComponent handleOpen={() => this.toggleChatVisibility()} />
+          <ButtonComponent
+            myEventBus={eventBus}
+            handleOpen={() => this.toggleChatVisibility()}
+          />
         </Provider>
       </React.StrictMode>
     );
   }
 
-  renderAppChat(container: Element) {
+  renderAppChat(container: Element, eventBus: any) {
     const root = ReactDOM.createRoot(container);
     root.render(
       <React.StrictMode>
         <Provider store={store}>
-          <ChatComponent />
+          <ChatComponent myEventBus={eventBus} />
           {/* Render the chat component here */}
         </Provider>
       </React.StrictMode>
     );
   }
 
+  // sendMessageToIframe(iframe: HTMLIFrameElement, message: Object) {
+  //   if (iframe.contentWindow) {
+  //     iframe.contentWindow.postMessage(message, '*'); // Adjust the target origin as needed for security
+  //   }
+  // }
+
   toggleChatVisibility() {
     // Toggle chat container visibility
     this.chatContainer.style.display =
       this.chatContainer.style.display === 'none' ? 'block' : 'none';
   }
-
-  // renderApp(container: Element) {
-  //   const root = ReactDOM.createRoot(container);
-  //   root.render(
-  //     <React.StrictMode>
-  //       <Provider store={store}>
-  //         <App />
-  //       </Provider>
-  //     </React.StrictMode>
-  //   );
-  // }
 }
 
 export default IframeApp;
