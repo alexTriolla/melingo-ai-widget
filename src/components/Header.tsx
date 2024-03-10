@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { resetChat } from '../api/data';
 import styles from '../assets/styles/components/header.module.scss';
 import { MessageType } from '../types/common';
@@ -9,6 +10,7 @@ const Header = ({
   setMessages: (param: MessageType[]) => void;
   handleOpen: () => void;
 }) => {
+
   const closeWidget = () => {
     resetChat();
     setMessages([]);

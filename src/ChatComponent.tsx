@@ -10,13 +10,13 @@ export default function ChatComponent({ myEventBus }: { myEventBus: any }) {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOpen = () => {};
+  const handleOpen = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    // document.addEventListener('message', (event) => {
-    //   console.log(event);
-    // });
+    myEventBus.emit('open-chat', isOpen);
+  }, [myEventBus, isOpen]);
 
+  useEffect(() => {
     myEventBus.on('open-chat', ({ detail }: { detail: boolean }) => {
       setIsOpen(detail);
 

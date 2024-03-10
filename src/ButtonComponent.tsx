@@ -14,5 +14,11 @@ export default function ButtonComponent({
     myEventBus.emit('open-chat', isOpen);
   }, [myEventBus, isOpen]);
 
+  useEffect(() => {
+    myEventBus.on('open-chat', ({ detail }: { detail: boolean }) => {
+      setIsOpen(detail);
+    });
+  }, [myEventBus]);
+
   return <ChatButton handleOpen={() => setIsOpen(!isOpen)} isOpen={isOpen} />;
 }
