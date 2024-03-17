@@ -81,7 +81,11 @@ const ChatInput: React.FC<ChatInputProps> = ({
 
       <p className={classnames(styles['input-description'], { rtl: isRtl })}>
         {t('PoweredBy')}{' '}
-        <a href="https://insightsui.morfix.com/tou-morfix-insights">
+        <a
+          target="_blank"
+          rel="noreferrer noopener"
+          href="https://insightsui.morfix.com/tou-morfix-insights"
+        >
           {t('MelingoAI')}
         </a>
       </p>
