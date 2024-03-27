@@ -17,12 +17,23 @@ const handleRequest = async <T>(
   }
 };
 
-export const sendMessage = <T>(message: string): Promise<T> =>
-  handleRequest<T>(api.post, 'get-query', {
+export const sendMessage = <T>(message: string): Promise<T> => {
+  // Access the script tag by ID
+  const scriptTag = document.getElementById('chat-script-config');
+
+  // Get the company name from the data attribute
+  const company = scriptTag
+    ? scriptTag.getAttribute('data-company')
+    : 'defaultCompany';
+
+  // Use the company name in your request
+  return handleRequest<T>(api.post, 'get-query', {
     query: message,
     username: 'mel_chat_bot_app_user',
     password: 'MelChatBotAppUser2024!',
+    company, // Use the dynamically obtained company name
   });
+};
 
 // export const resetChat = <T>(): Promise<T> =>
 //   handleRequest<T>(api.post, 'reset-chat', {
