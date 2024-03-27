@@ -20,12 +20,15 @@ const Header = ({
   return (
     <div
       className={styles.widgetHeader}
-      style={{ backgroundColor: settings.themeColor }}
+      style={{
+        backgroundColor: settings.themeColor,
+        color: settings.fontColor,
+      }}
     >
       <div className={styles.logoContainer}>
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
-      <div className={styles.titleContainer} style={{color: settings.fontColor}}>
+      <div className={styles.titleContainer}>
         <p>{settings.chatbotName}</p>
         <span>{settings.chatbotSubtitle}</span>
       </div>
