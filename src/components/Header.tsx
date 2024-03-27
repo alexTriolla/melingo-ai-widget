@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { resetChat } from '../api/data';
 import styles from '../assets/styles/components/header.module.scss';
 import { MessageType } from '../types/common';
