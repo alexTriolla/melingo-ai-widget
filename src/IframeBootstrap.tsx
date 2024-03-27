@@ -39,15 +39,6 @@ class IframeApp {
       : 'defaultCompany';
 
     this.fetchSettings(companyName || 'defaultCompany').then((settings) => {
-      // Adjust positioning based on settings.chatbotPosition
-      // if (settings.chatbotPosition === 'right') {
-      //   this.chatContainer.style.right = '30px';
-      //   this.buttonContainer.style.right = '10px';
-      // } else if (settings.chatbotPosition === 'left') {
-      //   this.chatContainer.style.left = '30px';
-      //   this.buttonContainer.style.left = '10px';
-      // }
-
       this.settings = settings;
 
       // Initialize chat and button iframes
@@ -78,7 +69,7 @@ class IframeApp {
     this.chatContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
     this.chatContainer.style.bottom = '60px'; // Position at the bottom
-    this.chatContainer.style[this.settings.chatbotPosition] = '30px'; 
+    this.chatContainer.style[this.settings.chatbotPosition] = '30px';
     this.chatContainer.style.display = 'none'; // Use flexbox layout
     this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
     this.chatContainer.style.justifyContent = 'center'; // Horizontally center the child content
@@ -138,7 +129,7 @@ class IframeApp {
     this.buttonContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.buttonContainer.style.position = 'absolute'; // Set the position to absolute
     this.buttonContainer.style.bottom = '10px'; // Position at the bottom
-    this.buttonContainer.style.right = '10px'; // Position at the right
+    this.buttonContainer.style[this.settings.chatbotPosition] = '10px'; 
     this.buttonContainer.style.display = 'none'; // Use flexbox layout
     this.buttonIframe = document.createElement('iframe');
 
