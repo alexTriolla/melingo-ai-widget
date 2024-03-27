@@ -29,8 +29,8 @@ export const sendMessage = <T>(message: string): Promise<T> => {
   // Use the company name in your request
   return handleRequest<T>(api.post, 'get-query', {
     query: message,
-    username: 'mel_chat_bot_app_user',
-    password: 'MelChatBotAppUser2024!',
+    // username: 'mel_chat_bot_app_user',
+    // password: 'MelChatBotAppUser2024!',
     company, // Use the dynamically obtained company name
   });
 };
@@ -44,7 +44,7 @@ export const sendMessage = <T>(message: string): Promise<T> => {
 
 export const resetChat = <T>(): Promise<T> =>
   handleRequest<T>(api.post, 'reset-chat', {
-    username: 'mel_chat_bot_app_user',
-    password: 'MelChatBotAppUser2024!',
+    // username: 'mel_chat_bot_app_user',
+    // password: 'MelChatBotAppUser2024!',
     reset_chat: true,
   });
