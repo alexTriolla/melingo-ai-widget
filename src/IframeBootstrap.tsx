@@ -24,7 +24,8 @@ class IframeApp {
     public rootId: string,
     public iframeAttributes: Record<string, string> = {},
     public cssFiles: string[] = [],
-    public isOpen: boolean = false
+    public isOpen: boolean = false,
+    public settings: any = {}
   ) {
     // Initialize chat and button iframes
     const myEventBus = new EventBus<string>('ai-event-bus');
@@ -39,13 +40,15 @@ class IframeApp {
 
     this.fetchSettings(companyName || 'defaultCompany').then((settings) => {
       // Adjust positioning based on settings.chatbotPosition
-      if (settings.chatbotPosition === 'right') {
-        this.chatContainer.style.right = '30px';
-        this.buttonContainer.style.right = '10px';
-      } else if (settings.chatbotPosition === 'left') {
-        this.chatContainer.style.left = '30px';
-        this.buttonContainer.style.left = '10px';
-      }
+      // if (settings.chatbotPosition === 'right') {
+      //   this.chatContainer.style.right = '30px';
+      //   this.buttonContainer.style.right = '10px';
+      // } else if (settings.chatbotPosition === 'left') {
+      //   this.chatContainer.style.left = '30px';
+      //   this.buttonContainer.style.left = '10px';
+      // }
+
+      this.settings = settings;
 
       // Initialize chat and button iframes
       this.initChatIframe(myEventBus);
@@ -75,7 +78,7 @@ class IframeApp {
     this.chatContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.chatContainer.style.position = 'absolute'; // Set the position to absolute
     this.chatContainer.style.bottom = '60px'; // Position at the bottom
-    this.chatContainer.style.right = '30px'; // Position at the right
+    this.chatContainer.style[this.settings.chatbotPosition] = '30px'; 
     this.chatContainer.style.display = 'none'; // Use flexbox layout
     this.chatContainer.style.alignItems = 'center'; // Vertically center the child content
     this.chatContainer.style.justifyContent = 'center'; // Horizontally center the child content
