@@ -10,12 +10,13 @@ const Header = ({
   setMessages: (param: MessageType[]) => void;
   handleOpen: () => void;
 }) => {
-
   const closeWidget = () => {
     resetChat();
     setMessages([]);
     handleOpen();
   };
+
+  const settings = JSON.parse(localStorage.getItem('chatSettings')!);
 
   return (
     <div className={styles.widgetHeader}>
@@ -23,8 +24,8 @@ const Header = ({
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
       <div className={styles.titleContainer}>
-        <p>Chatbot Name</p>
-        <span>Our bot will reply instantly</span>
+        <p>{settings.chatbotName}</p>
+        <span>{settings.chatbotSubtitle}</span>
       </div>
       <div className={styles.button} onClick={handleOpen}>
         <svg
