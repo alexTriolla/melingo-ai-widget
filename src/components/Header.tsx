@@ -18,7 +18,10 @@ const Header = ({
   const settings = JSON.parse(localStorage.getItem('chatSettings')!);
 
   return (
-    <div className={styles.widgetHeader}>
+    <div
+      className={styles.widgetHeader}
+      style={{ backgroundColor: settings.themeColor }}
+    >
       <div className={styles.logoContainer}>
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
