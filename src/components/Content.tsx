@@ -119,7 +119,7 @@ const Content = ({
     <div
       className={styles.widgetContent}
       style={{
-        background: settings.themeColor || '#f5f5f5',
+        background: settings.backgroundPattern || '#f5f5f5',
       }}
     >
       <MessageList messages={messages} isRtl={true} />
