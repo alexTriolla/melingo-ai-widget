@@ -27,12 +27,11 @@ const Header = ({
       <div className={styles.logoContainer}>
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
-      <div
-        className={styles.titleContainer}
-        style={{ color: settings.fontColor }}
-      >
-        <p>{settings.chatbotName}</p>
-        <span>{settings.chatbotSubtitle}</span>
+      <div className={styles.titleContainer}>
+        <p style={{ color: settings.fontColor }}>{settings.chatbotName}</p>
+        <span style={{ color: settings.fontColor }}>
+          {settings.chatbotSubtitle}
+        </span>
       </div>
       <div className={styles.button} onClick={handleOpen}>
         <svg
