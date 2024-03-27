@@ -25,7 +25,7 @@ const Header = ({
       <div className={styles.logoContainer}>
         {/* <img src={AvatarIcon} alt="Avatar" /> */}
       </div>
-      <div className={styles.titleContainer}>
+      <div className={styles.titleContainer} style={{color: settings.fontColor}}>
         <p>{settings.chatbotName}</p>
         <span>{settings.chatbotSubtitle}</span>
       </div>
