@@ -38,7 +38,7 @@ const Header = ({
           width="18"
           height="2"
           viewBox="0 0 18 2"
-          fill="none"
+          fill={settings.fontColor}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -52,7 +52,7 @@ const Header = ({
           width="24"
           height="24"
           viewBox="0 0 24 24"
-          fill="none"
+          fill={settings.fontColor}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
