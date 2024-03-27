@@ -1,7 +1,6 @@
 // IframeBootstrap.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import ChatComponent from './ChatComponent';
@@ -30,14 +29,42 @@ class IframeApp {
     // Initialize chat and button iframes
     const myEventBus = new EventBus<string>('ai-event-bus');
 
-    this.initChatIframe(myEventBus);
-    this.initButtonIframe(myEventBus);
+    // Access the script tag by ID
+    const scriptTag = document.getElementById('chat-script-config');
+
+    // Get the company name from the data attribute
+    const companyName = scriptTag
+      ? scriptTag.getAttribute('data-company')
+      : 'defaultCompany';
+
+    this.fetchSettings(companyName || 'defaultCompany').then((settings) => {
+      // Adjust positioning based on settings.chatbotPosition
+      if (settings.chatbotPosition === 'right') {
+        this.chatContainer.style.right = '30px';
+        this.buttonContainer.style.right = '10px';
+      } else if (settings.chatbotPosition === 'left') {
+        this.chatContainer.style.left = '30px';
+        this.buttonContainer.style.left = '10px';
+      }
+
+      // Initialize chat and button iframes
+      this.initChatIframe(myEventBus);
+      this.initButtonIframe(myEventBus);
+    });
   }
 
   sendMessageToIframe(iframe: HTMLIFrameElement, message: Object) {
     if (iframe.contentWindow) {
       iframe.contentWindow.postMessage(message, '*'); // Adjust the target origin as needed for security
     }
+  }
+
+  async fetchSettings(companyName: string) {
+    const response = await fetch(
+      `http://localhost:3030/settings/v1/company/${companyName}`
+    );
+    const settings = await response.json();
+    return settings;
   }
 
   initChatIframe(eventBus: any) {

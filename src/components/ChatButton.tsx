@@ -7,7 +7,11 @@ type ChatButtonProps = {
 
 const ChatButton = ({ handleOpen, isOpen }: ChatButtonProps) => {
   return (
-    <button className={styles.appButton} onClick={handleOpen} id='melingo-AI-button'>
+    <button
+      className={styles.appButton}
+      onClick={handleOpen}
+      id="melingo-AI-button"
+    >
       {!isOpen ? (
         <svg
           width="29"
