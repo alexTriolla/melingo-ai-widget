@@ -41,6 +41,9 @@ class IframeApp {
     this.fetchSettings(companyName || 'defaultCompany').then((settings) => {
       this.settings = settings;
 
+      // Save settings to local storage
+      localStorage.setItem('chatSettings', JSON.stringify(settings));
+
       // Initialize chat and button iframes
       this.initChatIframe(myEventBus);
       this.initButtonIframe(myEventBus);
@@ -129,7 +132,7 @@ class IframeApp {
     this.buttonContainer.style.overflow = 'hidden'; // Optional: in case the iframe content exceeds these dimensions
     this.buttonContainer.style.position = 'absolute'; // Set the position to absolute
     this.buttonContainer.style.bottom = '10px'; // Position at the bottom
-    this.buttonContainer.style[this.settings.chatbotPosition] = '10px'; 
+    this.buttonContainer.style[this.settings.chatbotPosition] = '10px';
     this.buttonContainer.style.display = 'none'; // Use flexbox layout
     this.buttonIframe = document.createElement('iframe');
 
