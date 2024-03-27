@@ -113,8 +113,15 @@ const Content = ({
     };
   }, []);
 
+  const settings = JSON.parse(localStorage.getItem('chatSettings')!);
+
   return (
-    <div className={styles.widgetContent}>
+    <div
+      className={styles.widgetContent}
+      style={{
+        background: settings.themeColor || '#f5f5f5',
+      }}
+    >
       <MessageList messages={messages} isRtl={true} />
       <ChatInput
         userQuery={userQuery}
