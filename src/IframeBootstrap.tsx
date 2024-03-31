@@ -33,8 +33,18 @@ class IframeApp {
     const scriptTag = document.getElementById('chat-script-config');
 
     // Wait for window to load before initializing the chat
-    window.Melchat = () => {
-      console.log('test from melchat alexxxxxx');
+    // window.Melchat = () => {
+    //   console.log('test from melchat alexxxxxx');
+    // };
+
+    window.onload = function () {
+      setTimeout(function() {
+        if (typeof window.Melchat === 'function') {
+          window.Melchat();
+        } else {
+          console.error("Melchat function not defined.");
+        }
+      }, 1000); // Adjust the delay as needed
     };
 
     // Get the company name from the data attribute
