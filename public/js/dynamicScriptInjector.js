@@ -45,22 +45,5 @@
     window.addEventListener('load', loadMelingoAIScript, false);
   }
 
-  //   window.addEventListener('message', function (event) {
-  //     // Ensure the message is from your iframe and has the correct structure
-  //     if (event.data.action === 'resize') {
-  //       // Assuming iframeAppInstance is your instance of IframeApp
-  //       iframeAppInstance.resizeContainer(event.data.width, event.data.height);
-  //     }
-  //   });
 })(window, document, window.MelingoAI || function () {}); // Self-invoking function
 
-window.addEventListener('message', function (event) {
-  // Ensure the message is from your iframe and has the correct structure
-  if (event.data.action === 'resize') {
-    // Assuming iframeAppInstance is your instance of IframeApp
-    const iframeAppInstance = window.document.getElementById(
-      'melingo-ai-agent-container'
-    );
-    iframeAppInstance.resizeContainer(event.data.width, event.data.height);
-  }
-});
