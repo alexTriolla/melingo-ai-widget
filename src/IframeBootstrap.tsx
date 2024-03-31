@@ -30,8 +30,11 @@ class IframeApp {
     // Initialize chat and button iframes
     const myEventBus = new EventBus<string>('ai-event-bus');
 
-    // Access the script tag by ID
     const scriptTag = document.getElementById('chat-script-config');
+
+    window.Melchat = () => {
+      console.log('test from melchat');
+    };
 
     // Get the company name from the data attribute
     const companyName = scriptTag

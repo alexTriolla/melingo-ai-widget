@@ -1,3 +1,10 @@
+// Access the script tag by ID
+declare global {
+  interface Window {
+    Melchat: () => void;
+  }
+}
+
 export type ViewType = {
   icon?: string;
   name: string;
