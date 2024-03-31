@@ -32,15 +32,15 @@ class IframeApp {
 
     const scriptTag = document.getElementById('chat-script-config');
 
-    // Wait for window to load before initializing the chat
-    window.Melchat = () => {
-      console.log('test from melchat alexxxxxx');
-    };
+    let companyName: string | null = 'defaultCompany'; // Default value set initially
 
-    // Get the company name from the data attribute
-    const companyName = scriptTag
-      ? scriptTag.getAttribute('data-company')
-      : 'defaultCompany';
+    if (scriptTag && scriptTag.getAttribute('data-company')) {
+      // If scriptTag exists and has a data-company attribute
+      companyName = scriptTag.getAttribute('data-company');
+    } else if (window.companyNameGTM) {
+      // Else, if the global variable companyNameGTM is set
+      companyName = window.companyNameGTM;
+    }
 
     this.fetchSettings(companyName || 'defaultCompany').then((settings) => {
       this.settings = settings;

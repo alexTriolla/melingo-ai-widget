@@ -2,6 +2,8 @@
 declare global {
   interface Window {
     Melchat: () => void;
+    dataLayer: Array<{ companyName: string }>;
+    companyNameGTM: string | null;
   }
 }
 

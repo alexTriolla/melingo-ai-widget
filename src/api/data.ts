@@ -24,6 +24,8 @@ export const sendMessage = <T>(message: string): Promise<T> => {
   // Get the company name from the data attribute
   const company = scriptTag
     ? scriptTag.getAttribute('data-company')
+    : window.companyNameGTM
+    ? window.companyNameGTM
     : 'defaultCompany';
 
   // Use the company name in your request
