@@ -29,10 +29,7 @@
       // Queue function calls made before the library is loaded
       window.MelingoAI.readyQueue.push({ method, options, data });
     };
-    window.MelingoAI.init = function (options) {
-      // Initialize the Melingo AI chat script
-      window.MelingoAI('init', options);
-    };
+    
     MelingoAI.readyQueue = []; // Initialize the queue
   }
 
