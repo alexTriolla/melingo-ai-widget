@@ -32,6 +32,10 @@ class IframeApp {
 
     const scriptTag = document.getElementById('chat-script-config');
 
+    // Wait for window to load before initializing the chat
+    window.Melchat = () => {
+      console.log('test from melchat alexxxxxx');
+    };
 
     // Get the company name from the data attribute
     const companyName = scriptTag

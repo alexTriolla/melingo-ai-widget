@@ -1,16 +1,6 @@
 /* eslint-disable no-unused-expressions */
 
 !(function (window, document, MelingoAI) {
-  window.onload = function () {
-    setTimeout(function () {
-      if (typeof window.Melchat === 'object') {
-        console.log('Melchat function defined.', window.Melchat);
-      } else {
-        console.error('Melchat function not defined.');
-      }
-    }, 1000); // Adjust the delay as needed
-  };
-
   // Function to dynamically load the Melingo AI chat script
   function loadMelingoAIScript() {
     // Find the first script tag in the document
