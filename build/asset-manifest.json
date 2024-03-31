@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.css",
+    "main.js": "/static/js/main.js",
+    "vendors.js": "/static/js/vendors.js",
+    "index.html": "/index.html",
+    "main.css.map": "/static/css/main.css.map",
+    "main.js.map": "/static/js/main.js.map",
+    "vendors.js.map": "/static/js/vendors.js.map"
+  },
+  "entrypoints": [
+    "static/js/vendors.js",
+    "static/css/main.css",
+    "static/js/main.js"
+  ]
+}
