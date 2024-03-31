@@ -34,7 +34,7 @@ class IframeApp {
 
     // Wait for window to load before initializing the chat
     window.Melchat = () => {
-      console.log('test from melchat');
+      console.log('test from melchat alexxxxxx');
     };
 
     // Get the company name from the data attribute
