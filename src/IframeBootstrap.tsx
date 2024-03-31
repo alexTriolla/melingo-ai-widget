@@ -33,7 +33,6 @@ class IframeApp {
     const scriptTag = document.getElementById('chat-script-config');
 
 
-
     // Get the company name from the data attribute
     const companyName = scriptTag
       ? scriptTag.getAttribute('data-company')
