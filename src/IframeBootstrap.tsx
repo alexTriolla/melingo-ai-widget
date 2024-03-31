@@ -35,6 +35,8 @@ class IframeApp {
     // Wait for window to load before initializing the chat
     window.Melchat = () => {
       console.log('test from melchat alexxxxxx');
+      var companyName = '{{comp_name}}';
+      console.log(companyName); // Use the variable in your script
     };
 
     // Get the company name from the data attribute
